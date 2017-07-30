@@ -1,12 +1,14 @@
 import * as express from 'express';
 import * as http from 'http';
 
-import Server from './server';
+import * as Server from './Server';
 
 const port = 4141;
-Server.set('port', port);
 
-const app = http.createServer(Server);
+const ex: express.Application = express();
+var server = Server.create(ex, port);
+
+const app = http.createServer(ex);
 app.listen(port);
 
 app.on('listening', () => console.log('listening on port ' + port));

@@ -1,18 +1,11 @@
 import * as express from 'express';
 
-class Server {
-    public app: express.Application;
+export const create = (ex: express.Application, port: number) => {
+    ex.set('port', port);
 
-    constructor() {
-        this.app = express();
-        this.routes();
-    }
+    var router: express.Router = express.Router();
 
-    private routes(): void {
-        var router: express.Router = express.Router();
+    ex.use(router);
 
-        this.app.use(router);
-    }    
-}
-
-export default new Server().app;
+    return ex;
+};
