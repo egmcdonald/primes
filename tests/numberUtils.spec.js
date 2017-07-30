@@ -45,6 +45,17 @@ describe('NumberUtils', () => {
         it('should throw range error if max is greater than maximum 32-bit int', () => assert.throws(() => NumberUtils.generateArrayOfPrimes(NumberUtils.int32BitMax + 1)), RangeError, 'max cannot be greater than 32-bit integer max');    
     });
 
+    describe('estimateUpperLimitForSieve', () => {
+        //success cases
+        it('should return estimated limit when n is 6', () => assert.equal(NumberUtils.estimateUpperLimitForSieve(6), 14));
+        it('should return estimated limit when n is 5', () => assert.equal(NumberUtils.estimateUpperLimitForSieve(5), 11));
+        it('should return estimated limit when n is 1', () => assert.equal(NumberUtils.estimateUpperLimitForSieve(1), 2));
+        it('should return estimated limit when n is 0', () => assert.equal(NumberUtils.estimateUpperLimitForSieve(0), 0));
+    
+        //fail cases
+        it('should throw range error if n is less than 0', () => assert.throws(() => NumberUtils.estimateUpperLimitForSieve(Utils.generateRandomWholeNumber(1, NumberUtils.int32BitMax) * -1), RangeError, 'n cannot be less than 0'))
+    });
+
     describe('generateMultiplicationHashSet', () => {
         //success cases
         it('should return a hashset of multiplied source array', () => {
