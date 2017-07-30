@@ -1,0 +1,1 @@
+export const formatMultiplicationTable = (source: Array<number>): string => '';
