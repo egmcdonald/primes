@@ -44,4 +44,20 @@ describe('NumberUtils', () => {
         it('should throw range error if max is less than 0', () => assert.throws(() => NumberUtils.generateArrayOfPrimes(Utils.generateRandomWholeNumber(1, NumberUtils.int32BitMax) * -1)), RangeError, 'max cannot be less than or equal to 0');
         it('should throw range error if max is greater than maximum 32-bit int', () => assert.throws(() => NumberUtils.generateArrayOfPrimes(NumberUtils.int32BitMax + 1)), RangeError, 'max cannot be greater than 32-bit integer max');    
     });
+
+    describe('generateMultiplicationHashSet', () => {
+        //success cases
+        it('should return a hashset of multiplied source array', () => {
+            const source = [1, 2, 3];
+
+            var actual = NumberUtils.generateMultiplicationHashSet(source);
+
+            var expected = [[0, 1, 2, 3], [1, 1, 2, 3], [2, 2, 4, 6], [3, 3, 6, 9]];
+
+            assert.deepEqual(actual, expected);
+        });
+
+        //fail cases
+        it('should throw range error if source array is empty', () => assert.throws(() => NumberUtils.generateMultiplicationHashSet([])));
+    });
 });
