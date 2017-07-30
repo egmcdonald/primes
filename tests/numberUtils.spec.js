@@ -22,6 +22,14 @@ describe('is32BitIntegerGreaterThanOrEqualTo1', () => {
     it('should throw range error if input is greater than maximum 32-bit int', () => assert.throws(() => NumberUtils.is32BitIntegerGreaterThanOrEqualTo1(NumberUtils.int32BitMax + 1), RangeError, 'not less than 32-bit integer max'));
 });
 
+describe('isInteger', () => {
+    //success cases
+    it('should return true if input is an integer', () => assert.isTrue(NumberUtils.isInteger(Utils.generateRandomWholeNumber(0, NumberUtils.int32BitMax))));
+
+    //fail cases
+    it('should return false if input is not a whole number', () => assert.isFalse(NumberUtils.isInteger(Utils.generateRandomWholeNumber(0, NumberUtils.int32BitMax) + 0.1)));
+});
+
 describe('generateArrayOfPrimes', () => {
     //success cases
     it('should return an array of the first 1 primes', () => assert.deepEqual(NumberUtils.generateArrayOfPrimes(1), [2]));
