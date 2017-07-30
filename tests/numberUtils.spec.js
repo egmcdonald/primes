@@ -15,12 +15,12 @@ describe('NumberUtils', () => {
         it('should return true if input is maximum 32-bit int', () => assert.isTrue(NumberUtils.is32BitIntegerGreaterThanOrEqualTo1(NumberUtils.int32BitMax)));
         it('should not throw if input is between 1 and maximum 32-bit int', () => assert.doesNotThrow(() => NumberUtils.is32BitIntegerGreaterThanOrEqualTo1(Utils.generateRandomWholeNumber(1, NumberUtils.int32BitMax))));
         it('should return true if input is between 1 and maximum 32-bit int', () => assert.isTrue(NumberUtils.is32BitIntegerGreaterThanOrEqualTo1(Utils.generateRandomWholeNumber(1, NumberUtils.int32BitMax))));
+        it('should return false if input is less than 1', () => assert.isFalse(NumberUtils.is32BitIntegerGreaterThanOrEqualTo1(0)));
+        it('should return false if input is greater than maximum 32-bit int', () => assert.isFalse(NumberUtils.is32BitIntegerGreaterThanOrEqualTo1(NumberUtils.int32BitMax + 1)));
         
         //fail cases
         it('should throw type error if input is not a number', () => assert.throws(() => NumberUtils.is32BitIntegerGreaterThanOrEqualTo1('abc'), TypeError, 'not a number'));
         it('should throw type error if input is not a whole number', () => assert.throws(() => NumberUtils.is32BitIntegerGreaterThanOrEqualTo1(1.2), TypeError, 'not an integer'));
-        it('should throw range error if input is less than 1', () => assert.throws(() => NumberUtils.is32BitIntegerGreaterThanOrEqualTo1(0), RangeError, 'not greater than or equal to 1'));
-        it('should throw range error if input is greater than maximum 32-bit int', () => assert.throws(() => NumberUtils.is32BitIntegerGreaterThanOrEqualTo1(NumberUtils.int32BitMax + 1), RangeError, 'not less than 32-bit integer max'));
     });
 
     describe('isInteger', () => {
