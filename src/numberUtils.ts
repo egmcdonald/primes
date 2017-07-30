@@ -11,4 +11,9 @@ export const is32BitIntegerGreaterThanOrEqualTo1 = (value: any): boolean => {
 
 export const isInteger = (value: number): boolean => value % 1 === 0;
 
-export const generateArrayOfPrimes = (max: number): Array<number> => [];
+export const generateArrayOfPrimes = (max: number): Array<number> => {
+    if (isInteger(max) === false) throw new TypeError('max must be a whole number');
+    if (max <= 0) throw new RangeError('max cannot be less than or equal to 0');
+    if (max > int32BitMax) throw new RangeError('max cannot be greater than 32-bit integer max');
+    return [];    
+}
