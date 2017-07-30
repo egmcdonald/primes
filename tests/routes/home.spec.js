@@ -9,7 +9,7 @@ var Home = require('../../scripts/routes/home');
 
 var Router = new Home.Home();
 
-describe ('Home', () => {
+describe ('routes/Home', () => {
     describe('route', () => {
         it('should return hello world response', () => {
             var res = app.makeResponse((err, sideEffects) => {
