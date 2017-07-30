@@ -1,0 +1,21 @@
+{
+  "name": "primes",
+  "version": "1.0.0",
+  "description": "A Node.js application written in Typescript to generate and display a multiplication table of the first N primes",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "egmcdonald",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "express": "^4.15.3",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-typescript": "^3.2.1",
+    "typescript": "^2.4.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.0"
+  }
+}
