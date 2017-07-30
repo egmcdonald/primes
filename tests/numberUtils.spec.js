@@ -48,16 +48,16 @@ describe('NumberUtils', () => {
     describe('generateMultiplicationHashSet', () => {
         //success cases
         it('should return a hashset of multiplied source array', () => {
-            const source = [1, 2, 3];
+            const source = [2, 4, 6];
 
             var actual = NumberUtils.generateMultiplicationHashSet(source);
 
-            var expected = [[0, 1, 2, 3], [1, 1, 2, 3], [2, 2, 4, 6], [3, 3, 6, 9]];
+            var expected = [[0, 2, 4, 6], [2, 4, 8, 12], [4, 8, 16, 24], [6, 12, 24, 36]];
 
             assert.deepEqual(actual, expected);
         });
 
         //fail cases
-        it('should throw range error if source array is empty', () => assert.throws(() => NumberUtils.generateMultiplicationHashSet([])));
+        it('should throw range error if source array is empty', () => assert.throws(() => NumberUtils.generateMultiplicationHashSet([]), RangeError, 'source cannot be empty'));
     });
 });
