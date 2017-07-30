@@ -17,3 +17,21 @@ export const generateArrayOfPrimes = (max: number): Array<number> => {
     if (max > int32BitMax) throw new RangeError('max cannot be greater than 32-bit integer max');
     return [];    
 }
+
+export const generateMultiplicationHashSet = (source: Array<number>): number[][] => {
+    if (source.length == 0) throw new RangeError('source cannot be empty');
+    
+    var hashset: number[][] = [];
+    
+    hashset[0] = [0];
+    for(var i = 0; i < source.length; i++)
+         hashset[0].push(source[i]);
+    
+    for(var j = 0; j < source.length; j++) {
+        hashset[j + 1] = [source[j]];
+        for(var k = 0; k < source.length; k++)
+            hashset[j + 1].push(source[j] * source[k]);
+    }
+
+    return hashset;
+}
