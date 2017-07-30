@@ -9,6 +9,6 @@ export const is32BitIntegerGreaterThanOrEqualTo1 = (value: any): boolean => {
     return true;
 }
 
-export const isInteger = (value: number): boolean => false;
+export const isInteger = (value: number): boolean => value % 1 === 0;
 
 export const generateArrayOfPrimes = (max: number): Array<number> => [];
