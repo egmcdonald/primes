@@ -2,14 +2,15 @@
 var chai = require('chai');
 var assert = chai.assert;
 
-var FormatUtils = require("../scripts/formatUtils");
+var FormatUtils = require('../scripts/formatUtils');
+var NumberUtils = require('../scripts/numberUtils');
 
 describe('FormatUtils', () => {
     describe('formatMultiplicationTable', () => {
         //success cases
         it('should not throw if source array is not empty', () => assert.doesNotThrow(() => FormatUtils.formatMultiplicationTable([1, 2, 3])));
         it('should format a source array into a multiplication table', () => {
-            const source = [1, 2, 3];
+            const source = NumberUtils.generateMultiplicationHashSet([1, 2, 3]);
             
             var actual = FormatUtils.formatMultiplicationTable(source);
 

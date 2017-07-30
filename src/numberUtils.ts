@@ -18,10 +18,10 @@ export const generateArrayOfPrimes = (max: number): Array<number> => {
     return [];    
 }
 
-export const generateMultiplicationHashSet = (source: Array<number>): number[][] => {
+export const generateMultiplicationHashSet = (source: Array<number>): Array<Array<number>> => {
     if (source.length == 0) throw new RangeError('source cannot be empty');
     
-    var hashset: number[][] = [];
+    var hashset: Array<Array<number>> = [];
     
     hashset[0] = [0];
     for(var i = 0; i < source.length; i++)
