@@ -22,7 +22,7 @@ describe('FormatUtils', () => {
         });
 
         //fail cases
-        it('should throw if source array is empty', () => assert.throws(() => FormatUtils.formatHashsetToTable([0][0]), RangeError, 'source array cannot be empty'));
+        it('should throw if source array is empty', () => assert.throws(() => FormatUtils.formatHashsetToTable([]), RangeError, 'source array cannot be empty'));
         it('should throw if source array is not n x n', () => {
             const source = [[0, 1, 2], [1, 2], [2, 3, 4]];
             assert.throws(() => FormatUtils.formatHashsetToTable(source), RangeError, 'source array is not n x n');                        

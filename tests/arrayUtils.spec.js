@@ -17,6 +17,6 @@ describe('ArrayUtils', () => {
         });   
         
         //fail cases                    
-        it('should throw range error if double array is empty', () => assert.throws(() => ArrayUtils.isNxN([0][0]), RangeError, 'source array cannot be empty'));
+        it('should throw range error if double array is empty', () => assert.throws(() => ArrayUtils.isNxN([]), RangeError, 'source array cannot be empty'));
     });
 });
