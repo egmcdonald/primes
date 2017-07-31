@@ -2,8 +2,8 @@
 var chai = require('chai');
 var assert = chai.assert;
 
-var FormatUtils = require('../scripts/formatUtils');
-var NumberUtils = require('../scripts/numberUtils');
+var FormatUtils = require('../../scripts/utils/formatUtils');
+var NumberUtils = require('../../scripts/utils/numberUtils');
 
 describe('FormatUtils', () => {
     describe('formatHashsetToTable', () => {

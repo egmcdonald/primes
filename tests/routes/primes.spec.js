@@ -7,7 +7,7 @@ var app = express();
 
 var Primes = require('../../scripts/routes/primes');
 
-var FormatUtils = require('../../scripts/formatUtils');
+var FormatUtils = require('../../scripts/utils/formatUtils');
 
 describe ('routes/Primes', () => {
     describe('route', () => {

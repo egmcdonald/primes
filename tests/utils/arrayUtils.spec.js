@@ -2,9 +2,9 @@
 var chai = require('chai');
 var assert = chai.assert;
 
-var Utils = require('./utils');
+var Utils = require('../utils');
 
-var ArrayUtils = require('../scripts/arrayUtils');
+var ArrayUtils = require('../../scripts/utils/arrayUtils');
 
 describe('ArrayUtils', () => {
     describe('isNxN', () => {

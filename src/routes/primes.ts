@@ -1,7 +1,7 @@
 import * as express from 'express';
 
-import * as FormatUtils from './../formatUtils';
-import * as NumberUtils from './../numberUtils';
+import * as FormatUtils from './../utils/formatUtils';
+import * as NumberUtils from './../utils/numberUtils';
 
 export const route = (req: express.Request, res: express.Response): void => { 
     var value: any = req.params.n;

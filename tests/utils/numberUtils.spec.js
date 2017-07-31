@@ -2,9 +2,9 @@
 var chai = require('chai');
 var assert = chai.assert;
 
-var Utils = require('./utils');
+var Utils = require('../utils');
 
-var NumberUtils = require("../scripts/numberUtils");
+var NumberUtils = require("../../scripts/utils/numberUtils");
 
 describe('NumberUtils', () => {
     describe('is32BitIntegerGreaterThanOrEqualTo1', () => {
