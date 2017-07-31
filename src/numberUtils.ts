@@ -11,11 +11,14 @@ export const is32BitIntegerGreaterThanOrEqualTo1 = (value: any): boolean => {
 
 export const isInteger = (value: number): boolean => value % 1 === 0;
 
-export const generateArrayOfPrimes = (max: number): Array<number> => {
-    if (isInteger(max) === false) throw new TypeError('max must be a whole number');
-    if (max <= 0) throw new RangeError('max cannot be less than or equal to 0');
-    if (max > int32BitMax) throw new RangeError('max cannot be greater than 32-bit integer max');
-    return [];
+export const generateArrayOfPrimes = (n: number): Array<number> => {
+    if (isInteger(n) === false) throw new TypeError('max must be a whole number');
+    if (n <= 0) throw new RangeError('max cannot be less than or equal to 0');
+    if (n > int32BitMax) throw new RangeError('max cannot be greater than 32-bit integer max');
+
+    var limit = estimateUpperLimitForSieve(n);
+    var sieve = sieveOfEratosthenes(limit);
+    return getTruesFromSieve(sieve, n, limit);    
 }
 
 //picked 6 as limit from: https://en.wikipedia.org/wiki/Prime_number_theorem#Approximations_for_the_nth_prime_number
@@ -43,14 +46,17 @@ export const sieveOfEratosthenes = (limit: number): Array<boolean> => {
     return flags;
 }
 
-export const getTruesFromSieve = (sieve: Array<boolean>, max: number, limit: number): Array<number> => {
+export const getTruesFromSieve = (sieve: Array<boolean>, n: number, limit: number): Array<number> => {
     if (sieve.length == 0) throw new RangeError('sieve cannot be empty');
-    if (max <= 0) throw new RangeError('max cannot be less than or equal to 0');
+    if (n <= 0) throw new RangeError('n cannot be less than or equal to 0');
     if (limit <= 0) throw new RangeError('limit cannot be less than or equal to 0');
     
     let primes: Array<number> = [];
-    for (var i = 0, found = 0; i < limit && found < max; i++)
+    var found = 0;
+    for (var i = 0; i < sieve.length; i++)
     {
+        if (found == n) break;
+
         if (sieve[i]) {
             primes.push(i);
             found++;

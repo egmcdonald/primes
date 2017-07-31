@@ -35,8 +35,11 @@ describe('NumberUtils', () => {
         //success cases
         it('should return an array of the first 1 primes', () => assert.deepEqual(NumberUtils.generateArrayOfPrimes(1), [2]));
         it('should return an array of length 1', () => assert.equal(NumberUtils.generateArrayOfPrimes(1).length, 1));
-        it('should return an array of the first n primes', () => assert.deepEqual(NumberUtils.generateArrayOfPrimes(5), [2, 3, 5, 7, 11]));
-        it('should return an array of length max', () => assert.equal(NumberUtils.generateArrayOfPrimes(1000).length, 1000));
+        it('should return an array of the first 5 primes', () => assert.deepEqual(NumberUtils.generateArrayOfPrimes(5), [2, 3, 5, 7, 11]));
+        it('should return an array of length max', () => {
+            var len = Utils.generateRandomWholeNumber(5, 1000);
+            assert.equal(NumberUtils.generateArrayOfPrimes(len).length, len);
+        });
 
         //fail cases
         it('should throw type error if max is not a whole number', () => assert.throws(() => NumberUtils.generateArrayOfPrimes(Utils.generateRandomWholeNumber(1, NumberUtils.int32BitMax) + 0.1)), RangeError, 'max must be a whole number');
@@ -88,7 +91,7 @@ describe('NumberUtils', () => {
 
         //fail cases
         it('should throw range error if sieve is empty', () => assert.throws(() => NumberUtils.getTruesFromSieve([], 0, 0), RangeError, 'sieve cannot be empty'));
-        it('should throw range error if max is less than or equal to 0', () => assert.throws(() => NumberUtils.getTruesFromSieve([true], 0, 0), RangeError, 'max cannot be less than or equal to 0'));
+        it('should throw range error if n is less than or equal to 0', () => assert.throws(() => NumberUtils.getTruesFromSieve([true], 0, 0), RangeError, 'n cannot be less than or equal to 0'));
         it('should throw range error if limit is less than or equal to 0', () => assert.throws(() => NumberUtils.getTruesFromSieve([true], 1, 0), RangeError, 'limit cannot be less than or equal to 0'));
     });
 
