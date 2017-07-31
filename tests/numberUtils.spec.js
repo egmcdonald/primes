@@ -88,8 +88,8 @@ describe('NumberUtils', () => {
 
         //fail cases
         it('should throw range error if sieve is empty', () => assert.throws(() => NumberUtils.getTruesFromSieve([], 0, 0), RangeError, 'sieve cannot be empty'));
-        it('should throw range error if max is less than sieve length', () => assert.throws(() => NumberUtils.getTruesFromSieve([true], 0, 0), RangeError, 'max cannot be less than sieve length'));
-        it('should throw range error if limit is less than sieve length', () => assert.throws(() => NumberUtils.getTruesFromSieve([true], 1, 0), RangeError, 'limit cannot be less than sieve length'));
+        it('should throw range error if max is less than or equal to 0', () => assert.throws(() => NumberUtils.getTruesFromSieve([true], 0, 0), RangeError, 'max cannot be less than or equal to 0'));
+        it('should throw range error if limit is less than or equal to 0', () => assert.throws(() => NumberUtils.getTruesFromSieve([true], 1, 0), RangeError, 'limit cannot be less than or equal to 0'));
     });
 
     describe('generateMultiplicationHashSet', () => {
