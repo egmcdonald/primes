@@ -36,7 +36,7 @@ describe('NumberUtils', () => {
         it('should return an array of the first 1 primes', () => assert.deepEqual(NumberUtils.generateArrayOfPrimes(1), [2]));
         it('should return an array of length 1', () => assert.equal(NumberUtils.generateArrayOfPrimes(1).length, 1));
         it('should return an array of the first n primes', () => assert.deepEqual(NumberUtils.generateArrayOfPrimes(5), [2, 3, 5, 7, 11]));
-        it('should return an array of length max', () => assert.equal(NumberUtils.generateArrayOfPrimes(NumberUtils.int32BitMax).length, NumberUtils.int32BitMax));
+        it('should return an array of length max', () => assert.equal(NumberUtils.generateArrayOfPrimes(1000).length, 1000));
 
         //fail cases
         it('should throw type error if max is not a whole number', () => assert.throws(() => NumberUtils.generateArrayOfPrimes(Utils.generateRandomWholeNumber(1, NumberUtils.int32BitMax) + 0.1)), RangeError, 'max must be a whole number');
@@ -47,13 +47,26 @@ describe('NumberUtils', () => {
 
     describe('estimateUpperLimitForSieve', () => {
         //success cases
-        it('should return estimated limit when n is 6', () => assert.equal(NumberUtils.estimateUpperLimitForSieve(6), 14));
+        it('should return estimated limit when n is 6', () => assert.equal(NumberUtils.estimateUpperLimitForSieve(6), 14)); //this is correct as 6th prime is 13 (and 13 < 14)
         it('should return estimated limit when n is 5', () => assert.equal(NumberUtils.estimateUpperLimitForSieve(5), 11));
         it('should return estimated limit when n is 1', () => assert.equal(NumberUtils.estimateUpperLimitForSieve(1), 2));
         it('should return estimated limit when n is 0', () => assert.equal(NumberUtils.estimateUpperLimitForSieve(0), 0));
     
         //fail cases
         it('should throw range error if n is less than 0', () => assert.throws(() => NumberUtils.estimateUpperLimitForSieve(Utils.generateRandomWholeNumber(1, NumberUtils.int32BitMax) * -1), RangeError, 'n cannot be less than 0'))
+    });
+
+    describe('sieveOfEratosthenes', () => {
+        //success cases
+        it('should return sieved array of prime indexes where n is 2', () => assert.deepEqual(NumberUtils.sieveOfEratosthenes(2), [false, false, true]));
+        it('should return sieved array of prime indexes where n is 6', () => assert.deepEqual(NumberUtils.sieveOfEratosthenes(6), [false, false, true, true, false, true, false]));
+        it('should return sieved array of length n + 1', () => {
+            var limit = Utils.generateRandomWholeNumber(6, 1000);
+            assert.equal(NumberUtils.sieveOfEratosthenes(limit).length, limit + 1);
+        });
+
+        //fail cases
+        it('should throw range error if n is 1', () => assert.throws(() => NumberUtils.sieveOfEratosthenes(1), RangeError, 'n cannot be less than or equal to 1'));
     });
 
     describe('generateMultiplicationHashSet', () => {
