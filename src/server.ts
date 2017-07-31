@@ -1,9 +1,14 @@
 import * as express from 'express';
 
-export const create = (ex: express.Application, port: number) => {
-    ex.set('port', port);
+//controllers
+import * as HomeController from './controllers/homeController';
+import * as PrimesController from './controllers/primesController';
 
+export const create = (ex: express.Application) => {
     var router: express.Router = express.Router();
+
+    router.get('/', HomeController.get);
+    router.get('/primes/:n', PrimesController.get);
 
     ex.use(router);
 

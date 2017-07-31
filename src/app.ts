@@ -3,12 +3,12 @@ import * as http from 'http';
 
 import * as Server from './Server';
 
-const port = 4141;
+var server = Server.create(express());
 
-const ex: express.Application = express();
-var server = Server.create(ex, port);
+const port: number = 4141;
+server.set('port', port);
 
-const app = http.createServer(ex);
+const app = http.createServer(server);
 app.listen(port);
 
 app.on('listening', () => console.log('listening on port ' + port));
