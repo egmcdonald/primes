@@ -9,16 +9,18 @@ var PrimesController = require('../../scripts/controllers/primesController');
 
 var FormatUtils = require('../../scripts/utils/formatUtils');
 
-describe ('PrimesController', () => {
+describe('PrimesController', () => {
     describe('get', () => {
         //success cases
         it('should return multiplication table of primes up to param n', () => {
             var req = { params: { 'n': 3 } };
             var res = app.makeResponse((err, sideEffects) => {
-                const expected = '|\t0\t|\t2\t|\t3\t|\t5\t|\r\n' +
-                                 '|\t2\t|\t4\t|\t6\t|\t10\t|\r\n' +
-                                 '|\t3\t|\t6\t|\t9\t|\t15\t|\r\n' +
-                                 '|\t5\t|\t10\t|\t15\t|\t25\t|\r\n';                
+                const expected = '<table>' +
+                                    '<tr><td>0</td><td>2</td><td>3</td><td>5</td></tr>' +
+                                    '<tr><td>2</td><td>4</td><td>6</td><td>10</td></tr>' +
+                                    '<tr><td>3</td><td>6</td><td>9</td><td>15</td></tr>' +
+                                    '<tr><td>5</td><td>10</td><td>15</td><td>25</td></tr>' +
+                                 '</table>';             
                 assert.equal(sideEffects.send, expected);              
             });
             PrimesController.get(req, res);

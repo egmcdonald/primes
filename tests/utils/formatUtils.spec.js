@@ -13,10 +13,12 @@ describe('FormatUtils', () => {
             
             var actual = FormatUtils.formatHashsetToTable(source);
 
-            const expected = '|\t0\t|\t1\t|\t2\t|\t3\t|\r\n' +
-                             '|\t1\t|\t1\t|\t2\t|\t3\t|\r\n' +
-                             '|\t2\t|\t2\t|\t4\t|\t6\t|\r\n' +
-                             '|\t3\t|\t3\t|\t6\t|\t9\t|\r\n';
+            const expected = '<table>' +
+                                '<tr><td>0</td><td>1</td><td>2</td><td>3</td></tr>' +
+                                '<tr><td>1</td><td>1</td><td>2</td><td>3</td></tr>' +
+                                '<tr><td>2</td><td>2</td><td>4</td><td>6</td></tr>' +
+                                '<tr><td>3</td><td>3</td><td>6</td><td>9</td></tr>' +
+                             '</table>';
 
             assert.equal(actual, expected);
         });
