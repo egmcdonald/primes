@@ -5,16 +5,16 @@ var assert = chai.assert;
 var express = require('mock-express');
 var app = express();
 
-var Home = require('../../scripts/routes/home');
+var HomeController = require('../../scripts/controllers/homeController');
 
-describe ('routes/Home', () => {
-    describe('route', () => {
+describe ('HomeController', () => {
+    describe('get', () => {
         //success cases
         it('should return useful response as to how to use application', () => {
             var res = app.makeResponse((err, sideEffects) => {
                 assert.equal(sideEffects.send, 'modify url to /{int} and calculate prime multiplication table');              
             });
-            Home.route(null, res);
+            HomeController.get(null, res);
         });
     });
 });

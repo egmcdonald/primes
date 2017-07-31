@@ -5,12 +5,12 @@ var assert = chai.assert;
 var express = require('mock-express');
 var app = express();
 
-var Primes = require('../../scripts/routes/primes');
+var PrimesController = require('../../scripts/controllers/primesController');
 
 var FormatUtils = require('../../scripts/utils/formatUtils');
 
-describe ('routes/Primes', () => {
-    describe('route', () => {
+describe ('PrimesController', () => {
+    describe('get', () => {
         //success cases
         it('should return multiplication table of primes up to param n', () => {
             var req = { params: { 'n': 3 } };
@@ -21,7 +21,7 @@ describe ('routes/Primes', () => {
                                  '|\t5\t|\t10\t|\t15\t|\t25\t|\r\n';                
                 assert.equal(sideEffects.send, expected);              
             });
-            Primes.route(req, res);
+            PrimesController.get(req, res);
         });
 
         //fail cases
@@ -30,14 +30,14 @@ describe ('routes/Primes', () => {
             var res = app.makeResponse((err, sideEffects) => {
                 assert.equal(sideEffects.send, 'input [abc] type invalid: not a number');
             });
-            Primes.route(req, res);
+            PrimesController.get(req, res);
         });
         it('should return bad request if n is outwith range', () => {
             var req = { params: { 'n': 0 } };
             var res = app.makeResponse((err, sideEffects) => {
                 assert.equal(sideEffects.send, 'input must be within 1 to 2147483647 range');
             });
-            Primes.route(req, res);
+            PrimesController.get(req, res);
         });
     });
 });
