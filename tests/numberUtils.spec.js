@@ -69,6 +69,29 @@ describe('NumberUtils', () => {
         it('should throw range error if n is 1', () => assert.throws(() => NumberUtils.sieveOfEratosthenes(1), RangeError, 'n cannot be less than or equal to 1'));
     });
 
+    describe('getTruesFromSieve', () => {
+        //success
+        it('should return array of numbers from boolean array', () => {
+            var flags = Array(Utils.generateRandomWholeNumber(1, 1000));
+            for (var i = 0; i < flags.length; i++) 
+                flags[i] = i % 2 == 0;
+
+            var actual = NumberUtils.getTruesFromSieve(flags, flags.length, flags.length);
+
+            var expected = [];
+            for (var i = 0; i < flags.length; i++)
+                if (flags[i])
+                    expected.push(i);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        //fail cases
+        it('should throw range error if sieve is empty', () => assert.throws(() => NumberUtils.getTruesFromSieve([], 0, 0), RangeError, 'sieve cannot be empty'));
+        it('should throw range error if max is less than sieve length', () => assert.throws(() => NumberUtils.getTruesFromSieve([true], 0, 0), RangeError, 'max cannot be less than sieve length'));
+        it('should throw range error if limit is less than sieve length', () => assert.throws(() => NumberUtils.getTruesFromSieve([true], 1, 0), RangeError, 'limit cannot be less than sieve length'));
+    });
+
     describe('generateMultiplicationHashSet', () => {
         //success cases
         it('should return a hashset of multiplied source array', () => {
