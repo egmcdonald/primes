@@ -90,8 +90,8 @@ describe('NumberUtils', () => {
         });
 
         //fail cases
-        it('should throw range error if sieve is empty', () => assert.throws(() => NumberUtils.getTruesFromSieve([], 0, 0), RangeError, 'sieve cannot be empty'));
-        it('should throw range error if n is less than or equal to 0', () => assert.throws(() => NumberUtils.getTruesFromSieve([true], 0, 0), RangeError, 'n cannot be less than or equal to 0'));        
+        it('should throw range error if sieve is empty', () => assert.throws(() => NumberUtils.getTruesFromSieve([], 0), RangeError, 'sieve cannot be empty'));
+        it('should throw range error if n is less than or equal to 0', () => assert.throws(() => NumberUtils.getTruesFromSieve([true], 0), RangeError, 'n cannot be less than or equal to 0'));        
     });
     
     describe('generateNthRowOfMultiplicationHashset', () => {

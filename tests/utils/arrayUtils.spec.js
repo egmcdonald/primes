@@ -6,7 +6,7 @@ var Utils = require('../utils');
 
 var ArrayUtils = require('../../scripts/utils/arrayUtils');
 
-describe('ArrayUtils', () => {  
+describe('ArrayUtils', () => {
     describe('generateBooleanArray', () => {
         //success cases
         it('should return boolean array with length specified', () => {

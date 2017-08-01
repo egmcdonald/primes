@@ -9,7 +9,7 @@ a Node.js application written in Typescript to generate and display a multiplica
 
 ## Build
 1. install node from https://nodejs.org/en/download/
-2. run _build.bat_
+2. execute _build.bat_
 
 ## Run 
 
@@ -30,6 +30,7 @@ a Node.js application written in Typescript to generate and display a multiplica
 - accurateness of the prime generation algorithm
 - high level of test coverage
 - well-structured solution
+- simple mocking of express objects
 
 ## Future development
 - increase efficiency of prime generation algorithm

@@ -3,6 +3,11 @@ import * as express from 'express';
 import * as FormatUtils from './../utils/formatUtils';
 import * as NumberUtils from './../utils/numberUtils';
 
+/**
+ * function to return a multiplication table of the first N primes (where N is a request parameter)
+ * @param req express request
+ * @param res express response
+ */
 export const get = (req: express.Request, res: express.Response): void => { 
     var value: any = req.params.n;
     try {
