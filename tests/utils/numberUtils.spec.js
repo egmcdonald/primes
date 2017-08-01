@@ -110,4 +110,41 @@ describe('NumberUtils', () => {
         //fail cases
         it('should throw range error if source array is empty', () => assert.throws(() => NumberUtils.generateMultiplicationHashSet([]), RangeError, 'source cannot be empty'));
     });
+
+    describe('generateNthRowOfMultiplicationHashset', () => {
+        //success cases
+        it('should generate first row of multiplication table', () => {
+            const source = [2, 5, 9];
+
+            var actual = NumberUtils.generateNthRowOfMultiplicationHashset(source, 0);
+
+            var expected = [0, 2, 5, 9];
+
+            assert.deepEqual(actual, expected);
+        });
+        it('should generate last row of multiplication table', () => {
+            const source = [2, 5, 9];
+
+            var actual = NumberUtils.generateNthRowOfMultiplicationHashset(source, source.length);
+
+            var expected = [9, 18, 45, 81];
+
+            assert.deepEqual(actual, expected);
+        });
+        it('should generate nth row of multiplication table', () => {
+            const source = [2, 5, 9];
+
+            const expected = [[0, 2, 5, 9], [2, 4, 10, 18], [5, 10, 25, 45], [9, 18, 45, 81]];
+
+            for (var i = 0; i <= source.length; i++) {
+                var actual = NumberUtils.generateNthRowOfMultiplicationHashset(source, i);
+
+                assert.deepEqual(actual, expected[i]);
+            }
+        });
+
+        //fail cases
+        it('should throw range error if n is less than 0', () => assert.throws(() => NumberUtils.generateNthRowOfMultiplicationHashset([0], -1), RangeError, 'n must be a valid index within source array'));
+        it('should throw range error if n is greater than source length', () => assert.throws(() => NumberUtils.generateNthRowOfMultiplicationHashset([0], 2), RangeError, 'n cannot be greater than source length'));
+    });
 });
