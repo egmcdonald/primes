@@ -11,4 +11,4 @@ export const formatHashsetToTable = (source: Array<Array<number>>): string => {
     return table;
 }
 
-const formatTableRow = (source: Array<any>): string => '<tr><td>' + source.join('</td><td>') + '</td></tr>';
+export const formatTableRow = (source: Array<any>): string => source.length == 0 ? '<tr></tr>' : '<tr><td>' + source.join('</td><td>') + '</td></tr>';
