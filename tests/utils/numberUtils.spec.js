@@ -94,23 +94,7 @@ describe('NumberUtils', () => {
         it('should throw range error if n is less than or equal to 0', () => assert.throws(() => NumberUtils.getTruesFromSieve([true], 0, 0), RangeError, 'n cannot be less than or equal to 0'));
         it('should throw range error if limit is less than or equal to 0', () => assert.throws(() => NumberUtils.getTruesFromSieve([true], 1, 0), RangeError, 'limit cannot be less than or equal to 0'));
     });
-
-    describe('generateMultiplicationHashSet', () => {
-        //success cases
-        it('should return a hashset of multiplied source array', () => {
-            const source = [2, 4, 6];
-
-            var actual = NumberUtils.generateMultiplicationHashSet(source);
-
-            var expected = [[0, 2, 4, 6], [2, 4, 8, 12], [4, 8, 16, 24], [6, 12, 24, 36]];
-
-            assert.deepEqual(actual, expected);
-        });
-
-        //fail cases
-        it('should throw range error if source array is empty', () => assert.throws(() => NumberUtils.generateMultiplicationHashSet([]), RangeError, 'source cannot be empty'));
-    });
-
+    
     describe('generateNthRowOfMultiplicationHashset', () => {
         //success cases
         it('should generate first row of multiplication table', () => {

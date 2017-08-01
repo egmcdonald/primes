@@ -65,24 +65,6 @@ export const getTruesFromSieve = (sieve: Array<boolean>, n: number, limit: numbe
     return primes;
 }
 
-export const generateMultiplicationHashSet = (source: Array<number>): Array<Array<number>> => {
-    if (source.length == 0) throw new RangeError('source cannot be empty');
-    
-    var hashset: Array<Array<number>> = [];
-    
-    hashset[0] = [0];
-    for(var i = 0; i < source.length; i++)
-         hashset[0].push(source[i]);
-    
-    for(var j = 0; j < source.length; j++) {
-        hashset[j + 1] = [source[j]];
-        for(var k = 0; k < source.length; k++)
-            hashset[j + 1].push(source[j] * source[k]);
-    }
-
-    return hashset;
-}
-
 export const generateNthRowOfMultiplicationHashset = (source: Array<number>, n: number): Array<number> => {
     if (n < 0) throw new RangeError('n must be a valid index within source array');
     if (n > source.length) throw new RangeError('n cannot be greater than source length');
