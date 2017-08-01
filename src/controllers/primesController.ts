@@ -9,10 +9,15 @@ export const get = (req: express.Request, res: express.Response): void => {
         if (NumberUtils.is32BitIntegerGreaterThanOrEqualTo1(value) === false) throw new RangeError('input must be within 1 to ' + NumberUtils.int32BitMax + ' range');
         
         var primes: Array<number> = NumberUtils.generateArrayOfPrimes(value);
-        var hashset: Array<Array<number>> = NumberUtils.generateMultiplicationHashSet(primes);
-        var table = FormatUtils.formatHashsetToTable(hashset);
-
-        res.send(table);
+        
+        res.write('<table>');
+        for (var i = 0; i <= value; i ++) {
+            var row = NumberUtils.generateNthRowOfMultiplicationHashset(primes, i);
+            res.write(FormatUtils.formatTableRow(row));
+        }
+        res.write('</table>');
+        
+        res.end();
     }
     catch (e) {
         if (e instanceof TypeError) res.send('input [' + value + '] type invalid: ' + e.message);
