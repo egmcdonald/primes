@@ -42,10 +42,10 @@ describe('NumberUtils', () => {
         });
 
         //fail cases
-        it('should throw type error if max is not a whole number', () => assert.throws(() => NumberUtils.generateArrayOfPrimes(Utils.generateRandomWholeNumber(1, NumberUtils.int32BitMax) + 0.1)), RangeError, 'max must be a whole number');
-        it('should throw range error if max is 0', () => assert.throws(() => NumberUtils.generateArrayOfPrimes(0), RangeError, 'max cannot be less than or equal to 0'));
-        it('should throw range error if max is less than 0', () => assert.throws(() => NumberUtils.generateArrayOfPrimes(Utils.generateRandomWholeNumber(1, NumberUtils.int32BitMax) * -1)), RangeError, 'max cannot be less than or equal to 0');
-        it('should throw range error if max is greater than maximum 32-bit int', () => assert.throws(() => NumberUtils.generateArrayOfPrimes(NumberUtils.int32BitMax + 1)), RangeError, 'max cannot be greater than 32-bit integer max');    
+        it('should throw type error if n is not a whole number', () => assert.throws(() => NumberUtils.generateArrayOfPrimes(Utils.generateRandomWholeNumber(1, NumberUtils.int32BitMax) + 0.1)), RangeError, 'n must be a whole number');
+        it('should throw range error if n is 0', () => assert.throws(() => NumberUtils.generateArrayOfPrimes(0), RangeError, 'n cannot be less than or equal to 0'));
+        it('should throw range error if n is less than 0', () => assert.throws(() => NumberUtils.generateArrayOfPrimes(Utils.generateRandomWholeNumber(1, NumberUtils.int32BitMax) * -1)), RangeError, 'n cannot be less than or equal to 0');
+        it('should throw range error if n is greater than maximum 32-bit int', () => assert.throws(() => NumberUtils.generateArrayOfPrimes(NumberUtils.int32BitMax + 1)), RangeError, 'n cannot be greater than 32-bit integer max');    
     });
 
     describe('estimateUpperLimitForSieve', () => {
@@ -75,15 +75,15 @@ describe('NumberUtils', () => {
     describe('getTruesFromSieve', () => {
         //success
         it('should return array of numbers from boolean array', () => {
-            var flags = Array(Utils.generateRandomWholeNumber(1, 1000));
-            for (var i = 0; i < flags.length; i++) 
-                flags[i] = i % 2 == 0;
+            var sieve = Array(Utils.generateRandomWholeNumber(1, 1000));
+            for (var i = 0; i < sieve.length; i++) 
+                sieve[i] = i % 2 == 0;
 
-            var actual = NumberUtils.getTruesFromSieve(flags, flags.length, flags.length);
+            var actual = NumberUtils.getTruesFromSieve(sieve, sieve.length);
 
             var expected = [];
-            for (var i = 0; i < flags.length; i++)
-                if (flags[i])
+            for (var i = 0; i < sieve.length; i++)
+                if (sieve[i])
                     expected.push(i);
 
             assert.deepEqual(actual, expected);
@@ -91,8 +91,7 @@ describe('NumberUtils', () => {
 
         //fail cases
         it('should throw range error if sieve is empty', () => assert.throws(() => NumberUtils.getTruesFromSieve([], 0, 0), RangeError, 'sieve cannot be empty'));
-        it('should throw range error if n is less than or equal to 0', () => assert.throws(() => NumberUtils.getTruesFromSieve([true], 0, 0), RangeError, 'n cannot be less than or equal to 0'));
-        it('should throw range error if limit is less than or equal to 0', () => assert.throws(() => NumberUtils.getTruesFromSieve([true], 1, 0), RangeError, 'limit cannot be less than or equal to 0'));
+        it('should throw range error if n is less than or equal to 0', () => assert.throws(() => NumberUtils.getTruesFromSieve([true], 0, 0), RangeError, 'n cannot be less than or equal to 0'));        
     });
     
     describe('generateNthRowOfMultiplicationHashset', () => {

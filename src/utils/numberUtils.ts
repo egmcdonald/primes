@@ -12,13 +12,13 @@ export const is32BitIntegerGreaterThanOrEqualTo1 = (value: any): boolean => {
 export const isInteger = (value: number): boolean => value % 1 === 0;
 
 export const generateArrayOfPrimes = (n: number): Array<number> => {
-    if (isInteger(n) === false) throw new TypeError('max must be a whole number');
-    if (n <= 0) throw new RangeError('max cannot be less than or equal to 0');
-    if (n > int32BitMax) throw new RangeError('max cannot be greater than 32-bit integer max');
+    if (isInteger(n) === false) throw new TypeError('n must be a whole number');
+    if (n <= 0) throw new RangeError('n cannot be less than or equal to 0');
+    if (n > int32BitMax) throw new RangeError('n cannot be greater than 32-bit integer max');
 
     var limit = estimateUpperLimitForSieve(n);
     var sieve = sieveOfEratosthenes(limit);
-    return getTruesFromSieve(sieve, n, limit);    
+    return getTruesFromSieve(sieve, n);    
 }
 
 //picked 6 as limit from: https://en.wikipedia.org/wiki/Prime_number_theorem#Approximations_for_the_nth_prime_number
@@ -33,23 +33,22 @@ export const estimateUpperLimitForSieve = (n: number): number => {
 export const sieveOfEratosthenes = (limit: number): Array<boolean> => {
     if (limit <= 1) throw new RangeError('n cannot be less than or equal to 1'); //no primes occur below 1
     
-    var flags = ArrayUtils.generateBooleanArray(limit + 1, true);
+    var sieve = ArrayUtils.generateBooleanArray(limit + 1, true);
     
     //we know 0 and 1 are not primes so we can discard these imediately
-    flags[0] = false;
-    flags[1] = false;
+    sieve[0] = false;
+    sieve[1] = false;
     
     for (var i = 2; i * i <= limit; i++)
-        if (flags[i])
+        if (sieve[i])
             for (var j = i * i; j <= limit; j += i)
-                flags[j] = false;
-    return flags;
+                sieve[j] = false;
+    return sieve;
 }
 
-export const getTruesFromSieve = (sieve: Array<boolean>, n: number, limit: number): Array<number> => {
+export const getTruesFromSieve = (sieve: Array<boolean>, n: number): Array<number> => {
     if (sieve.length == 0) throw new RangeError('sieve cannot be empty');
     if (n <= 0) throw new RangeError('n cannot be less than or equal to 0');
-    if (limit <= 0) throw new RangeError('limit cannot be less than or equal to 0');
     
     let primes: Array<number> = [];
     var found = 0;
