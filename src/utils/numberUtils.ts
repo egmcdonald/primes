@@ -82,3 +82,16 @@ export const generateMultiplicationHashSet = (source: Array<number>): Array<Arra
 
     return hashset;
 }
+
+export const generateNthRowOfMultiplicationHashset = (source: Array<number>, n: number): Array<number> => {
+    if (n < 0) throw new RangeError('n must be a valid index within source array');
+    if (n > source.length) throw new RangeError('n cannot be greater than source length');
+    
+    if (n === 0)
+        return [0].concat(source);
+
+    var row = [source[n - 1]];
+    for(var i = 0; i < source.length; i++)
+        row.push(source[i] * source[n - 1]);
+    return row;
+}
