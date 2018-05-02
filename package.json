@@ -4,7 +4,9 @@
   "description": "A Node.js application written in Typescript to generate and display a multiplication table of the first N primes",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm i --no-save && gulp",
+    "start": "node scripts/app",
+    "test": "mocha tests/**/*.spec.js"
   },
   "author": "egmcdonald",
   "license": "GPL-3.0",
@@ -16,6 +18,7 @@
     "typescript": "^2.4.2"
   },
   "devDependencies": {
-    "chai": "^4.1.0"
+    "chai": "^4.1.0",
+    "mocha": "^5.1.1"
   }
 }
